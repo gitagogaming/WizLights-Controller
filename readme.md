@@ -1,5 +1,9 @@
 
 # WizLight-Plugin
+
+![image](https://user-images.githubusercontent.com/76603653/210160506-9788db10-5221-4709-a9c2-671027a4fd7b.png)
+
+
 - [WizLight Plugin](#WizLight-Plugin)
   - [Description](#description) 
   - [Settings Overview](#Settings-Overview)
