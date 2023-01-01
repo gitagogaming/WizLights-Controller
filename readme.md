@@ -1,8 +1,19 @@
 
 # WizLight-Plugin
 
-
 <img src="https://user-images.githubusercontent.com/76603653/210160506-9788db10-5221-4709-a9c2-671027a4fd7b.png" width="25%" height="25%">
+
+
+
+You may update multiple lights at the same time by formatting them inside of a "list"  
+Example: `["192.168.0.155", "192.168.0.156"]` will affect BOTH lights instead of just 192.168.0.155
+![image](https://user-images.githubusercontent.com/76603653/210181161-06dd4976-daac-495a-905d-cfdc0e1c9ccc.png)
+
+Adjust Hue/Color, Brightness and White Temp all with Sliders.
+![image](https://user-images.githubusercontent.com/76603653/210181206-a6a391c4-1971-4e32-be15-892d9b37c076.png)
+
+
+
 
 - [WizLight Plugin](#WizLight-Plugin)
   - [Description](#description) 
