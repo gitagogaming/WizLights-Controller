@@ -1,8 +1,8 @@
 
 # WizLight-Plugin
 
-![image](https://user-images.githubusercontent.com/76603653/210160506-9788db10-5221-4709-a9c2-671027a4fd7b.png)
 
+<img src="https://user-images.githubusercontent.com/76603653/210160506-9788db10-5221-4709-a9c2-671027a4fd7b.png" width="50%" height="50%">
 
 - [WizLight Plugin](#WizLight-Plugin)
   - [Description](#description) 
