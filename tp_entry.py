@@ -1,6 +1,7 @@
 __version__ = 100
 PLUGIN_ID = "tp.plugin.WizLights"
 PLUGIN_NAME = "WizLight"
+PLUGIN_FOLDER = "WizLight"
 
 import socket
 import ipaddress
