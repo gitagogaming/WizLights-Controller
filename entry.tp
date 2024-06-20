@@ -1,0 +1,428 @@
+{
+  "sdk": 6,
+  "version": 100,
+  "name": "WizLight Plugin",
+  "id": "tp.plugin.WizLights",
+  "configuration": {
+    "colorDark": "#23272a",
+    "colorLight": "#57ad72"
+  },
+  "plugin_start_cmd_windows": "%TP_PLUGIN_FOLDER%WizLight\\WizLight_Plugin.exe",
+  "categories": [
+    {
+      "id": "tp.plugin.WizLights.main",
+      "name": "WizLight",
+      "imagepath": "%TP_PLUGIN_FOLDER%WizLight\\wizlight_w.png",
+      "actions": [
+        {
+          "id": "tp.plugin.WizLights.act.turn.on.off.light",
+          "name": "WIZ | Turn On / Off Light",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Select a Light to Turn On / Off",
+          "format": "{$tp.plugin.WizLights.act.light.on.off.toggle$}  Light:{$tp.plugin.WizLights.act.light.selection$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.on.off.toggle",
+              "type": "choice",
+              "label": "Text",
+              "default": "Toggle",
+              "valueChoices": [
+                "On",
+                "Off",
+                "Toggle"
+              ]
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.light.brightness",
+          "name": "WIZ | Light Brightness",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Change the Brightness of a Light",
+          "format": "Light:{$tp.plugin.WizLights.act.light.selection$} Brightness:{$tp.plugin.WizLights.act.light.brightness.choice$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.brightness.choice",
+              "type": "text",
+              "label": "Brightness",
+              "default": "100"
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.light.color.rgb",
+          "name": "WIZ | Change Light Color (RGB)",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Change the Color of a Light",
+          "format": "Light:{$tp.plugin.WizLights.act.light.selection$}  Color:{$tp.plugin.WizLights.act.light.color_selector$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.color_selector",
+              "type": "color",
+              "label": "Text",
+              "default": ""
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.light.color.rgb.manual",
+          "name": "WIZ | Change Light Color (RGB-Manual)",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Change the Color of a Light",
+          "format": "Light:{$tp.plugin.WizLights.act.light.selection$}  R:{$tp.plugin.WizLights.act.light.color.rgb.manual.red$} G:{$tp.plugin.WizLights.act.light.color.rgb.manual.green$}  B:{$tp.plugin.WizLights.act.light.color.rgb.manual.blue$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.color.rgb.manual.red",
+              "type": "number",
+              "label": "Red",
+              "default": 0
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.color.rgb.manual.green",
+              "type": "number",
+              "label": "Green",
+              "default": 0
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.color.rgb.manual.blue",
+              "type": "number",
+              "label": "Blue",
+              "default": 0
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.light.scene_select",
+          "name": "WIZ | Change Light Scene",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Change the Scene of a Light",
+          "format": "Light:{$tp.plugin.WizLights.act.light.selection$}  Scene:{$tp.plugin.WizLights.act.light.scene_select.choice$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.scene_select.choice",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.light.set_white",
+          "name": "WIZ | Change Light to White (Warm/Cool)",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Change the Color of a Light to Cold or Warm White  - Brightness is 0-100",
+          "format": "Light:{$tp.plugin.WizLights.act.light.selection$} Brightness:{$tp.plugin.WizLights.act.light.set_white.brightness$} Kelvin:{$tp.plugin.WizLights.act.light.set_white.kelvin$} | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.set_white.brightness",
+              "type": "text",
+              "label": "Text",
+              "default": "100"
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.set_white.kelvin",
+              "type": "choice",
+              "label": "Text",
+              "default": "3500",
+              "valueChoices": [
+                "None",
+                "2200",
+                "2700",
+                "3000",
+                "3100",
+                "3500",
+                "4100",
+                "5000",
+                "5500",
+                "6500"
+              ]
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.light.effect_speed",
+          "name": "WIZ | Change Light Effect Speed",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Change Effect Speed of a Light - Min:10 Max:200",
+          "format": "Light:{$tp.plugin.WizLights.act.light.selection$}  Effect Speed:{$tp.plugin.WizLights.act.light.effect_speed.choice$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.act.light.selection.custom$}",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.selection",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.effect_speed.choice",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            },
+            {
+              "id": "tp.plugin.WizLights.act.light.selection.custom",
+              "type": "text",
+              "label": "Text",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.act.discover.new_lights",
+          "name": "WIZ | Discover New Lights",
+          "prefix": "WizLight",
+          "type": "communicate",
+          "description": "Discover New Lights on Network",
+          "format": "Discover New Lights on the Network",
+          "tryInline": true,
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.act.light.filler",
+              "type": "choice",
+              "label": "Text",
+              "default": "",
+              "valueChoices": []
+            }
+          ]
+        }
+      ],
+      "states": [
+        {
+          "id": "tp.plugin.WizLights.state.plugin_status",
+          "type": "text",
+          "desc": "Wiz | Plugin Status",
+          "default": ""
+        },
+        {
+          "id": "tp.plugin.WizLights.state.time_running",
+          "type": "text",
+          "desc": "Wiz | Time Running",
+          "default": ""
+        }
+      ],
+      "events": [
+        {
+          "id": "tp.plugin.WizLights.event.user_0.speaking",
+          "name": "DC | User 0 - Speaking",
+          "format": "When User 0 is speaking - $val",
+          "type": "communicate",
+          "valueChoices": [
+            "True",
+            "False"
+          ],
+          "valueType": "choice",
+          "valueStateId": "tp.plugin.WizLights.state.User_0.speaking"
+        }
+      ],
+      "connectors": [
+        {
+          "id": "tp.plugin.WizLights.connector.light.brightnessControl",
+          "name": "Brightness Slider",
+          "format": "Adjust Brightness for {$tp.plugin.WizLights.connector.light.brightnessControl.choices$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.connector.light.brightnessControl.choices.custom$}",
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.connector.light.brightnessControl.choices",
+              "type": "choice",
+              "label": "",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.connector.light.brightnessControl.choices.custom",
+              "type": "text",
+              "label": "",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.connector.light.AllControl",
+          "name": "Custom Light Slider",
+          "format": "Adjust {$tp.plugin.WizLights.connector.light.AllControl.choices.slider$} for {$tp.plugin.WizLights.connector.light.brightnessControl.choices$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.connector.light.AllControl.choices.custom$}",
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.connector.light.AllControl.choices.slider",
+              "type": "text",
+              "label": "",
+              "default": ""
+            },
+            {
+              "id": "tp.plugin.WizLights.connector.light.brightnessControl.choices",
+              "type": "choice",
+              "label": "",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.connector.light.AllControl.choices.custom",
+              "type": "text",
+              "label": "",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.connector.light.hueControl",
+          "name": "Hue Slider",
+          "format": "Adjust Hue for {$tp.plugin.WizLights.connector.light.brightnessControl.choices$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.connector.light.hueControl.choices.custom$}",
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.connector.light.brightnessControl.choices",
+              "type": "choice",
+              "label": "",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.connector.light.hueControl.choices.custom",
+              "type": "text",
+              "label": "",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.connector.light.whiteControl",
+          "name": "White Slider",
+          "format": "Adjust White for {$tp.plugin.WizLights.connector.light.brightnessControl.choices$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.connector.light.whiteControl.choices.custom$}",
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.connector.light.brightnessControl.choices",
+              "type": "choice",
+              "label": "",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.connector.light.whiteControl.choices.custom",
+              "type": "text",
+              "label": "",
+              "default": ""
+            }
+          ]
+        },
+        {
+          "id": "tp.plugin.WizLights.connector.light.speedControl",
+          "name": "Effect Speed Slider",
+          "format": "Adjust Speed for {$tp.plugin.WizLights.connector.light.brightnessControl.choices$}  | CUSTOM LIGHT(optional): {$tp.plugin.WizLights.connector.light.speedControl.choices.custom$}",
+          "data": [
+            {
+              "id": "tp.plugin.WizLights.connector.light.brightnessControl.choices",
+              "type": "choice",
+              "label": "",
+              "default": "",
+              "valueChoices": []
+            },
+            {
+              "id": "tp.plugin.WizLights.connector.light.speedControl.choices.custom",
+              "type": "text",
+              "label": "",
+              "default": ""
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "name": "Local Broadcast IP",
+      "type": "text",
+      "default": "",
+      "readOnly": false
+    }
+  ]
+}

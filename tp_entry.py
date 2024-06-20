@@ -2,7 +2,26 @@ __version__ = 100
 PLUGIN_ID = "tp.plugin.WizLights"
 PLUGIN_NAME = "WizLight"
 
+import socket
+import ipaddress
 
+def get_broadcast_address():
+    # Create a socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    # Connect to a remote server
+    s.connect(("8.8.8.8", 80))
+
+    # Get the local IP address
+    local_ip = s.getsockname()[0]
+
+    # Calculate the broadcast address
+    ip_interface = ipaddress.ip_interface(f"{local_ip}/24")
+    broadcast_address = ip_interface.network.broadcast_address
+
+    return str(broadcast_address)
+
+print(get_broadcast_address())
 TP_PLUGIN_INFO = {
     'sdk': 6,
     'version': __version__,  # TP only recognizes integer version numbers
@@ -171,7 +190,6 @@ TP_PLUGIN_ACTIONS = {
                 "default": 0,
                 "min": 0,
                 "max": 255,
-
             },
             'Blue': {
                 "id": PLUGIN_ID + ".act.light.color.rgb.manual.blue",
@@ -230,7 +248,7 @@ TP_PLUGIN_ACTIONS = {
         'type': "communicate",
         'tryInline': True,
         "description": "Change the Color of a Light to Cold or Warm White  - Brightness is 0-100",
-        'format': "Light:$[1]  Light Type:$[2], Brightness:$[3] Kelvin:$[4] | CUSTOM LIGHT(optional): $[5]",
+        'format': "Light:$[1] Brightness:$[2] Kelvin:$[3] | CUSTOM LIGHT(optional): $[4]",
         'data': {
         'Light Selection': {
                 'id': PLUGIN_ID + ".act.light.selection",
@@ -239,13 +257,13 @@ TP_PLUGIN_ACTIONS = {
                 'default': "",
                 "valueChoices": []
         },
-        'Light Choice': {
-                'id': PLUGIN_ID + ".act.light.set_white.type",
-                'type': "choice",
-                'label': "Text",
-                'default': "",
-                'valueChoices': ["Warm White", "Cold White", "Daylight"]
-        },
+        # 'Light Choice': {
+        #         'id': PLUGIN_ID + ".act.light.set_white.type",
+        #         'type': "choice",
+        #         'label': "Text",
+        #         'default': "",
+        #         'valueChoices': ["Warm White", "Cold White", "Daylight"]
+        # },
         'Light Choice Brightness': {
                 'id': PLUGIN_ID + ".act.light.set_white.brightness",
                 'type': "text",
@@ -256,8 +274,8 @@ TP_PLUGIN_ACTIONS = {
                 "id": PLUGIN_ID + ".act.light.set_white.kelvin",
                 'type': "choice",
                 'label': "Text",
-                'default': "",
-                'valueChoices': []
+                'default': "3500",
+                'valueChoices': ["None", "2200", "2700", "3000", "3100", "3500", "4100", "5000", "5500", "6500"]
         },
         'Custom Light Selection': {
                 'id': PLUGIN_ID + ".act.light.selection.custom",
@@ -391,6 +409,37 @@ TP_PLUGIN_CONNECTORS = {
             }
         }
     },
+    
+    "Slider Control": {
+        'category': "main",
+        "id": PLUGIN_ID + ".connector.light.AllControl",
+        "name": "Custom Light Slider",
+        "description": "Custom Options include: Brightness, Color, White",
+        "format": "Adjust $[1] for $[2]  | CUSTOM LIGHT(optional): $[3]",
+        "label": "Adjust Light Color, Brightness, or White Shade",
+        "data": {
+            "Slider Choice": {
+                "id": PLUGIN_ID + ".connector.light.AllControl.choices.slider",
+                "type": "text",
+                "label": "",
+                "default": "",
+            },
+            "Light IPs": { ## ths is actually the IP.... 
+                "id": PLUGIN_ID + ".connector.light.brightnessControl.choices",
+                "type": "choice",
+                "label": "",
+                "default": "",
+                "valueChoices": []
+            },
+            "custom device": {
+                "id": PLUGIN_ID + ".connector.light.AllControl.choices.custom",
+                "type": "text",
+                "label": "",
+                "default": "",
+            },
+
+        }
+    },
     "Hue Changer": {
         'category': "main",
         "id": PLUGIN_ID + ".connector.light.hueControl",
@@ -407,6 +456,50 @@ TP_PLUGIN_CONNECTORS = {
             },
             "custom device": {
                 "id": PLUGIN_ID + ".connector.light.hueControl.choices.custom",
+                "type": "text",
+                "label": "",
+                "default": "",
+            }
+        }
+    },
+    "White Changer": {
+        'category': "main",
+        "id": PLUGIN_ID + ".connector.light.whiteControl",
+        "name": "White Slider",
+        "format": "Adjust White for $[1]  | CUSTOM LIGHT(optional): $[2]",
+        "label": "Adjust Light White",
+        "data": {
+            "default choices": {
+                "id": PLUGIN_ID + ".connector.light.brightnessControl.choices",
+                "type": "choice",
+                "label": "",
+                "default": "",
+                "valueChoices": []
+            },
+            "custom device": {
+                "id": PLUGIN_ID + ".connector.light.whiteControl.choices.custom",
+                "type": "text",
+                "label": "",
+                "default": "",
+            }
+        }
+    },
+    "Speed Changer": {
+        'category': "main",
+        "id": PLUGIN_ID + ".connector.light.speedControl",
+        "name": "Effect Speed Slider",
+        "format": "Adjust Speed for $[1]  | CUSTOM LIGHT(optional): $[2]",
+        "label": "Adjust Light Effect Speed",
+        "data": {
+            "default choices": {
+                "id": PLUGIN_ID + ".connector.light.brightnessControl.choices",
+                "type": "choice",
+                "label": "",
+                "default": "",
+                "valueChoices": []
+            },
+            "custom device": {
+                "id": PLUGIN_ID + ".connector.light.speedControl.choices.custom",
                 "type": "text",
                 "label": "",
                 "default": "",
