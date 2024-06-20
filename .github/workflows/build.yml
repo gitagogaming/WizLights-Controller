@@ -25,7 +25,6 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip3 install pyinstaller
-          pip install pillow
           pip3 install -r "requirements.txt"
           
       - name: Build tpp using tppbuild

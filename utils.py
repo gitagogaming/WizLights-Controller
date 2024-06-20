@@ -108,3 +108,23 @@ def write_lights_to_file(wizlight_list, file_name='wizlight_list.json'):
         except Exception as e:
             g_log.error("Error writing to JSON file: " + str(e))
             return False
+        
+
+# import socket
+# import ipaddress
+
+# def get_broadcast_address():
+#     # Create a socket
+#     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+#     # Connect to a remote server
+#     s.connect(("8.8.8.8", 80))
+
+#     # Get the local IP address
+#     local_ip = s.getsockname()[0]
+
+#     # Calculate the broadcast address
+#     ip_interface = ipaddress.ip_interface(f"{local_ip}/24")
+#     broadcast_address = ip_interface.network.broadcast_address
+
+#     return str(broadcast_address)

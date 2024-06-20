@@ -35,7 +35,7 @@ from tp_entry import PLUGIN_NAME, PLUGIN_FOLDER
 """
 PLUGIN_MAIN: This lets tppbuild know where your main python plugin file is located so it will know which file to compile.
 """
-PLUGIN_MAIN = "main.py"
+PLUGIN_MAIN = "wizlight.py"
 
 """
 PLUGIN_EXE_NAME: This defines what you want your plugin executable to be named. tppbuild will also use this for the .tpp file in the format:

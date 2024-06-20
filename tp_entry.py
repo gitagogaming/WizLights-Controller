@@ -3,26 +3,7 @@ PLUGIN_ID = "tp.plugin.WizLights"
 PLUGIN_NAME = "WizLight"
 PLUGIN_FOLDER = "WizLight"
 
-import socket
-import ipaddress
 
-def get_broadcast_address():
-    # Create a socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-    # Connect to a remote server
-    s.connect(("8.8.8.8", 80))
-
-    # Get the local IP address
-    local_ip = s.getsockname()[0]
-
-    # Calculate the broadcast address
-    ip_interface = ipaddress.ip_interface(f"{local_ip}/24")
-    broadcast_address = ip_interface.network.broadcast_address
-
-    return str(broadcast_address)
-
-print(get_broadcast_address())
 TP_PLUGIN_INFO = {
     'sdk': 6,
     'version': __version__,  # TP only recognizes integer version numbers
