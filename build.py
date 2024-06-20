@@ -29,7 +29,7 @@ In order for buildScript to work, you need to have the following variables in yo
 Even if you don't use all of the above variables, you still need to have the following variables in your build file
 """
 from TouchPortalAPI import tppbuild
-from TPPEntry import PLUGIN_NAME, PLUGIN_FOLDER
+from tp_entry import PLUGIN_NAME, PLUGIN_FOLDER
 
 
 """
@@ -88,7 +88,7 @@ ADDITIONAL_FILES = [
     "start.sh"
     ]
 if PLUGIN_ICON:
-    ADDITIONAL_FILES.append("TikTokLive.png")
+    ADDITIONAL_FILES.append(PLUGIN_ICON)
 
 ADDITIONAL_TPPSDK_ARGS = []
 
@@ -97,7 +97,7 @@ ADDITIONAL_TPPSDK_ARGS = []
 Any additional arguments to be passed to Pyinstaller. Optional.
 """
 ADDITIONAL_PYINSTALLER_ARGS = [
-    "--log-level=WARN", "--noconsole"
+    # "--log-level=WARN", "--noconsole"
 ]
 
 # validateBuild()
